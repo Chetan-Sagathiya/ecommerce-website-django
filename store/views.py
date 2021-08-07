@@ -99,8 +99,10 @@ def add_to_cart(request):
 		orderitem.save()
 
 		if orderitem.quantity <= 0:
+			print("order item", orderitem.quantity)
 			orderitem.delete()
-			orderitem.save()
+			print("order quantity is", orderitem.quantity)
+			
 	return JsonResponse("this is working", safe=False)
 
 def search(request):
