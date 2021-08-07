@@ -19,7 +19,7 @@ def store(request):
 		customer.save()
 		order, completed = Order.objects.get_or_create(customer=customer, completed	=False)
 	products = Product.objects.all()
-	paginator = Paginator(products, 1)
+	paginator = Paginator(products, 8)
 	page_number = request.GET.get('page')
 	page_obj = paginator.get_page(page_number)
 	context = {'products': page_obj, 'order':order}
@@ -100,7 +100,7 @@ def add_to_cart(request):
 
 		if orderitem.quantity <= 0:
 			orderitem.delete()
-			orderitems.save()
+			orderitem.save()
 	return JsonResponse("this is working", safe=False)
 
 def search(request):
